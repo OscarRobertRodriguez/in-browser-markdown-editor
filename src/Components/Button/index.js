@@ -1,2 +1,2 @@
-export * from './IconDelete';
-export {default} from './IconDelete';
+export * from './Button';
+export {default} from './Button';
