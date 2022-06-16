@@ -1,8 +1,8 @@
-import  FileInfo  from './../FileInfo/FileInfo';
+import FileInfo from './../FileInfo/FileInfo';
 import styled from "styled-components";
 import LogoImg from '../../assets/logo.svg';
 import Button from "../Button";
-import {QUERIES} from "../../constants";
+import { QUERIES } from "../../constants";
 
 import { useContext } from "react";
 import { StateContext } from "../App/App";
@@ -54,8 +54,9 @@ const Title = styled.h6`
     letter-spacing: 2px;
 `
 
-const DocumentsWrapper = styled.div`
-   margin: 0;
+const FilesWrapper = styled.ul`
+  margin: 0;
+  padding:0;
 `;
 
 
@@ -64,26 +65,26 @@ const DocumentsWrapper = styled.div`
 
 
 const SideMenu = () => {
-    
-  const {openNav} = useContext(StateContext); 
 
-    return (
-        <Wrapper isOpen={openNav}>
-          <Logo src={LogoImg} alt={'markdown'} />
-          <ContentWrapper>
-           <Title>my documents</Title>
-              <Button>
-                  <p>+ New Document</p>
-              </Button>
+  const { openNav } = useContext(StateContext);
 
-              <DocumentsWrapper>
-                <FileInfo />
-                <FileInfo  />
-              </DocumentsWrapper>
-          </ContentWrapper>
-            <h6>Light switcher</h6>
-        </Wrapper>
-    )
+  return (
+    <Wrapper isOpen={openNav}>
+      <Logo src={LogoImg} alt={'markdown'} />
+      <ContentWrapper>
+        <Title>my documents</Title>
+        <Button>
+          <p>+ New Document</p>
+        </Button>
+
+        <FilesWrapper>
+          <FileInfo />
+          <FileInfo />
+        </FilesWrapper>
+      </ContentWrapper>
+      <h6>Light switcher</h6>
+    </Wrapper>
+  )
 };
 
 export default SideMenu;
