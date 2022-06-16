@@ -7,6 +7,8 @@ import Modal from "../Modal";
 import LayoutPanel from "../LayoutPanel";
 import Divider from "../Divider";
 import { QUERIES } from "../../constants";
+import data from '../../data.json';
+import { useLocalStorage } from "../../Helpers/useLocalStorage";
 
 
 const Wrapper = styled.div`
@@ -72,12 +74,12 @@ function App() {
   let [openNav, setOpenNav] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [togglePreview, setTogglePreview] = useState(false);
-
-
+  const [files, setFiles] = useLocalStorage('files', data);
+  
   
 
   return (
-    <StateContext.Provider value={{ openNav, setOpenNav, showModal, setShowModal, togglePreview, setTogglePreview }}>
+    <StateContext.Provider value={{ openNav, setOpenNav, showModal, setShowModal, togglePreview, setTogglePreview, files , setFiles }}>
       <Wrapper>
 
         <MainWrapper isOpen={openNav}>
@@ -87,7 +89,7 @@ function App() {
             <LayoutPanel className='markdownPanel' noIcon={true} />
             <Divider />
             <LayoutPanel className="previewPanel" disabled={true} noIcon={false}>
-               lskdfjskjfksj    skdjfks      kdsjflsk jslkdfjs
+               {files}
               </LayoutPanel>
           </PanelWrapper>
 
