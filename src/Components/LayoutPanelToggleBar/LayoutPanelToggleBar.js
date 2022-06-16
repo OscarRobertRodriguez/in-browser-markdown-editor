@@ -38,9 +38,6 @@ const Wrapper = styled.div`
     }
   }
 
-
-
-
   @media ${QUERIES.tabletAndUp} {
     top: 72px;
    
@@ -98,13 +95,13 @@ const LayoutPanelToggleBar = ({ noIcon = false }) => {
       {/* code is for tablet and greater for eye icon */}
       {
         noIcon ? <IconShowPreview onClick={showPreview} /> : togglePreview && panelExist ?
-          <IconHidePreview onClick={showPreview}  /> :
+          <IconHidePreview onClick={showPreview} /> :
           <IconShowPreview onClick={hidePreview} className="hideIcon" />
       }
 
       { /* this will show Iconhide on mobile screens as style is different on tablet and greater and will hide on tab and greater  */}
 
-      {!togglePreview && <IconHidePreview  onClick={hidePreview} className='hide' />}
+      {!togglePreview && <IconHidePreview onClick={hidePreview} className='hide' />}
 
     </Wrapper>
   )
