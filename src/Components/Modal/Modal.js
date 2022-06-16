@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import Button from "../Button";
 import {Portal} from "@reach/portal";
+import { useContext } from "react";
+import { StateContext } from "../App/App";
 
 
 const ModalWrapper = styled.div`
@@ -49,7 +51,10 @@ function targetBackgroundOnly(e, func) {
 }
 
 
-const Modal = ({showModal, setShowModal}) => {
+const Modal = () => {
+
+    const {showModal, setShowModal} = useContext(StateContext); 
+
    if (!showModal) return null;
    const hideModal = () => setShowModal(false);
 

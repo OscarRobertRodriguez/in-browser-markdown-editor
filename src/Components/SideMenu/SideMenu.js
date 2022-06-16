@@ -1,8 +1,11 @@
+import  FileInfo  from './../FileInfo/FileInfo';
 import styled from "styled-components";
 import LogoImg from '../../assets/logo.svg';
 import Button from "../Button";
 import {QUERIES} from "../../constants";
-import IconDocument from '../../assets/icon-document.svg';
+
+import { useContext } from "react";
+import { StateContext } from "../App/App";
 
 const Wrapper = styled.div`
   height: 100%;
@@ -55,53 +58,17 @@ const DocumentsWrapper = styled.div`
    margin: 0;
 `;
 
-const ItemWrapper = styled.div`
-  display: flex;
-  color: hsla(0, 0%, 100%, 1.00);
-  align-items: center;
-  justify-self: start;
-  padding-top :26px;
-
-
-  & img {
-    width: 13.7px;
-    height: 16px;
-  }
 
 
 
-  & span {
-    font-size : 13px;
-    color: var(--grey-3);
-    font-weight: 300;
-    padding-left: 17px;
+
+
+const SideMenu = () => {
     
+  const {openNav} = useContext(StateContext); 
 
-  }
-`;
-
-
-const DocName = styled.p`
-  font-family: 'Roboto', sans-serif;
-  padding-left: 17px;
-  font-size: 15px;
-  border: none;;
-  background: transparent;
-  outline: none;
-  transition: 400ms ease-in-out 0s;
-  color: var(--white);
-  cursor: pointer;
-  
-  &:hover {
-    color: var(--dark-orange);
-    
-  }
-`
-
-
-const SideMenu = ({open}) => {
     return (
-        <Wrapper isOpen={open}>
+        <Wrapper isOpen={openNav}>
           <Logo src={LogoImg} alt={'markdown'} />
           <ContentWrapper>
            <h6>my documents</h6>
@@ -110,20 +77,8 @@ const SideMenu = ({open}) => {
               </Button>
 
               <DocumentsWrapper>
-                  <ItemWrapper>
-                          <img src={IconDocument} alt={'document'}/>
-                          <div style={{display: "flex", flexDirection: 'column'}}>
-                              <span>01 April 2022</span>
-                              <DocName>untitled-document.md</DocName>
-                          </div>
-                  </ItemWrapper>
-                  <ItemWrapper>
-                      <img src={IconDocument} alt={'document'}/>
-                      <div style={{display: "flex", flexDirection: 'column'}}>
-                          <span>01 April 2022</span>
-                          <DocName>welcome.md</DocName>
-                      </div>
-                  </ItemWrapper>
+                <FileInfo />
+                <FileInfo  />
               </DocumentsWrapper>
           </ContentWrapper>
             <h6>Light switcher</h6>

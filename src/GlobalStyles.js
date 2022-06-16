@@ -66,6 +66,7 @@ html, body, #root {
   font-family: 'Roboto Slab', sans-serif;
   width:100%;
   overflow-x:hidden;
+
 }
 
 

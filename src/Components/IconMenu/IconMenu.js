@@ -2,6 +2,8 @@ import styled from "styled-components";
 import Menu from '../../assets/icon-menu.svg';
 import CloseIcon from '../../assets/icon-close.svg';
 import {QUERIES} from "../../constants";
+import { useContext } from "react";
+import { StateContext } from "../App/App";
 
 const Wrapper = styled.div`
   width: 56px;
@@ -46,10 +48,14 @@ const IconClose = styled.img`
   }
 `;
 
-const IconMenu = ({open, setOpen}) => {
+const IconMenu = () => {
+
+   const {openNav, setOpenNav} = useContext(StateContext);
+
+
     return (
-        <Wrapper onClick={() => setOpen(!open)}>
-            { open ? <IconClose src={CloseIcon} alt='close' /> : <Icon src={Menu} alt={'menu'} /> }
+        <Wrapper onClick={() => setOpenNav(!openNav)}>
+            { openNav ? <IconClose src={CloseIcon} alt='close' /> : <Icon src={Menu} alt={'menu'} /> }
         </Wrapper>
 
     )

@@ -9,6 +9,7 @@ import {SaveButton} from "../Button";
 import {QUERIES} from "../../constants";
 import {Portal} from "@reach/portal";
 import Button from "../Button";
+import { useContext } from "react";
 
 const Wrapper = styled.header`
   background-color: var(--black-3);
@@ -106,14 +107,14 @@ const DocWrapper = styled.div`
 
 
 
-const Header = ({open, setOpen, setShowModal}) => {
+const Header = () => {
 
 
 
 
     return (
         <Wrapper>
-            <IconMenu open={open} setOpen={setOpen}/>
+            <IconMenu />
             <Logo src={LogoImg} />
             <DocWrapper>
                 <img src={IconDocument} alt={'document'}/>
@@ -122,7 +123,7 @@ const Header = ({open, setOpen, setShowModal}) => {
                     <input type='text' placeholder={'welcome.md'}/>
                 </div>
             </DocWrapper>
-            <IconDelete onClick={() => setShowModal(true)}/>
+            <IconDelete />
             <SaveButton width={40}>
                 <img src={SaveIcon} />
                 <p>save changes</p>
