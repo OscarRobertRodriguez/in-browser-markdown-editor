@@ -52,16 +52,41 @@ const DocName = styled.p`
 
 
 
-const FileInfo = ({date, name}) => {
+
+
+const FileInfo = ({ date, name }) => {
+
     return (
         <Wrapper>
             <img src={IconDocument} alt={'document'} />
             <InfoWrapper>
-                <Date>01 April 2022</Date>
-                <DocName>welcome.md</DocName>
+                <Date>{ModifyDate(date)}</Date>
+                <DocName>{name}</DocName>
             </InfoWrapper>
         </Wrapper>
     )
 };
 
 export default FileInfo;
+
+
+
+
+
+const getMonth = (date) => {
+    const options = { month: 'long' };
+    const d = new window.Date(date);
+    return new Intl.DateTimeFormat('en-US', options).format(d);
+}
+
+
+const ModifyDate = (date) => {
+    //    const d =  new window.Date(date); 
+    const copyDate = date.split("-");
+    const month = getMonth(date);
+    const year = copyDate[2]
+    const day = copyDate[1];
+    //    const year = d.getFullYear();
+
+    return `${day} ${month} ${year}`;
+}
