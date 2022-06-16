@@ -41,8 +41,10 @@ const Logo = styled.img`
 const ContentWrapper = styled.div`
   overflow-y: auto;
 
-  
-  & h6 {
+
+`
+
+const Title = styled.h6`
     color: var(--grey-2);
     font-weight: var(--bold);
     font-size: var(--h6-font-size);
@@ -50,9 +52,7 @@ const ContentWrapper = styled.div`
     font-family: 'Roboto', sans-serif;
     padding-bottom: 30px;
     letter-spacing: 2px;
-  }
 `
-
 
 const DocumentsWrapper = styled.div`
    margin: 0;
@@ -71,7 +71,7 @@ const SideMenu = () => {
         <Wrapper isOpen={openNav}>
           <Logo src={LogoImg} alt={'markdown'} />
           <ContentWrapper>
-           <h6>my documents</h6>
+           <Title>my documents</Title>
               <Button>
                   <p>+ New Document</p>
               </Button>
