@@ -5,7 +5,7 @@ import IconDocument from '../../assets/icon-document.svg';
 
 
 
-const Wrapper = styled.div`
+const Wrapper = styled.li`
   display: flex;
   color: hsla(0, 0%, 100%, 1.00);
   align-items: center;
@@ -52,7 +52,7 @@ const DocName = styled.p`
 
 
 
-const FileInfo = () => {
+const FileInfo = ({date, name}) => {
     return (
         <Wrapper>
             <img src={IconDocument} alt={'document'} />
