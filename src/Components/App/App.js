@@ -45,7 +45,7 @@ const PanelWrapper = styled.div`
    }
 
 
-   & .previewPanel {
+    .previewPanel {
     display: ${props => props.togglePreview ? "none" : "initial"};
 
     @media ${QUERIES.tabletAndUp} {
@@ -54,7 +54,7 @@ const PanelWrapper = styled.div`
    }
 
 
-   & .markdownPanel {
+    .markdownPanel {
     display: ${props => props.togglePreview ? "initial" : "none"};
      @media ${QUERIES.tabletAndUp} {
       display: ${props => props.togglePreview ? "none" : "initial"};
