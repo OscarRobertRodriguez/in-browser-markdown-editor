@@ -39,14 +39,7 @@ const Wrapper = styled.div`
   }
 
 
-   .iconShowMobile {
-    display: initial; 
 
-    @media ${QUERIES.tabletAndUp} {
-    display: none;
-   
-  }
-  }
 
   @media ${QUERIES.tabletAndUp} {
     top: 72px;

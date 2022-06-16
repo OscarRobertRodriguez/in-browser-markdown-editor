@@ -10,6 +10,7 @@ const Icon = styled.svg`
   width: 16px;
   height: 12px;
   display: initial;
+  fill: var(--grey-2);
   
   @media ${QUERIES.tabletAndUp} {
     display: none;
