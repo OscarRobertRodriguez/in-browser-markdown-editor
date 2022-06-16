@@ -38,7 +38,7 @@ const LayoutPanel = ({disabled, noIcon, className, children}) => {
     <Wrapper className={className}>
       <LayoutPanelToggleBar noIcon={noIcon}/>
       <TextArea disabled={disabled}>
-           {children}
+           
       </TextArea>
     </Wrapper>
 
