@@ -5,7 +5,6 @@ import SideMenu from "../SideMenu";
 import Header from "../Header";
 import Modal from "../Modal";
 import LayoutPanel from "../LayoutPanel";
-import LayoutPanelToggleBar from "../LayoutPanelToggleBar";
 import Divider from "../Divider";
 import { QUERIES } from "../../constants";
 
