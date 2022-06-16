@@ -1,7 +1,7 @@
 
 import styled from "styled-components";
 import { QUERIES } from "../../constants";
-import LayoutPanelToggleBar from "../LayoutPanelToggleBar";
+import LayoutPanelToggleBar from "../LayoutPanelToggleBar/LayoutPanelToggleBar";
 
 
 const Wrapper = styled.div`
