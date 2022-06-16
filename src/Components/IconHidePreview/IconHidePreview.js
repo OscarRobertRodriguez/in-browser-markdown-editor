@@ -9,6 +9,7 @@ const Icon = styled.svg`
   cursor: pointer;
   width: 16px;
   height: 15px;
+  fill: var(--grey-2);
  
 
   &:hover {
