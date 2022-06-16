@@ -20,6 +20,12 @@ const Wrapper = styled.div`
   top: 56px;
 
 
+  @media ${QUERIES.tabletAndUp} {
+    top: 72px;
+   
+  }
+
+
   .hide {
     display: initial; 
 
@@ -38,10 +44,6 @@ const Wrapper = styled.div`
     }
   }
 
-  @media ${QUERIES.tabletAndUp} {
-    top: 72px;
-   
-  }
 `;
 
 const Title = styled.h6`
