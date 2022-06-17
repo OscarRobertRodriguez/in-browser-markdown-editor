@@ -3,9 +3,10 @@ import styled from "styled-components";
 import LogoImg from '../../assets/logo.svg';
 import Button from "../Button";
 import { QUERIES } from "../../constants";
-
+import todayStringDateFormat from '../../Helpers/todayStringDateFormat';
 import { useContext } from "react";
 import { StateContext } from "../App/App";
+import { nanoid } from 'nanoid';
 
 const Wrapper = styled.div`
   height: 100%;
@@ -57,6 +58,7 @@ const Title = styled.h6`
 const FilesWrapper = styled.ul`
   margin: 0;
   padding:0;
+  color: #fff;
 `;
 
 
@@ -66,20 +68,38 @@ const FilesWrapper = styled.ul`
 
 const SideMenu = () => {
 
-  const { openNav } = useContext(StateContext);
+  const { openNav, files, setFiles, setArrayPos } = useContext(StateContext);
+
+
+  function addNewFileToStorage(setValue) {
+    setValue(prev => [...prev, {
+       "id": nanoid(),
+      "createdAt": todayStringDateFormat(),
+      "name": "untitled-document.md",
+      "content": ""
+    }]);
+
+      setArrayPos(currentArrayPos =>  {
+
+        return  currentArrayPos + 1;
+      }) 
+  }
+
 
   return (
     <Wrapper isOpen={openNav}>
       <Logo src={LogoImg} alt={'markdown'} />
       <ContentWrapper>
         <Title>my documents</Title>
-        <Button>
+        <Button onClick={() => addNewFileToStorage(setFiles)}>
           <p>+ New Document</p>
         </Button>
 
         <FilesWrapper>
-          <FileInfo />
-          <FileInfo />
+          {files.map((file, index) => {
+            return <FileInfo key={file.id} date={file.createdAt} name={file.name} onClick={() => setArrayPos(index)} />
+          })}
+
         </FilesWrapper>
       </ContentWrapper>
       <h6>Light switcher</h6>
@@ -88,3 +108,5 @@ const SideMenu = () => {
 };
 
 export default SideMenu;
+
+
