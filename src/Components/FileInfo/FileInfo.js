@@ -54,14 +54,14 @@ const DocName = styled.p`
 
 
 
-const FileInfo = ({ date, name }) => {
+const FileInfo = ( props) => {
 
     return (
-        <Wrapper>
+        <Wrapper {...props}>
             <img src={IconDocument} alt={'document'} />
             <InfoWrapper>
-                <Date>{ModifyDate(date)}</Date>
-                <DocName>{name}</DocName>
+                <Date>{ModifyDate(props.date)}</Date>
+                <DocName>{props.name}</DocName>
             </InfoWrapper>
         </Wrapper>
     )
