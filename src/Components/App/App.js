@@ -7,7 +7,7 @@ import Modal from "../Modal";
 import LayoutPanel from "../LayoutPanel";
 import Divider from "../Divider";
 import { QUERIES } from "../../constants";
-import data from '../../data.json';
+import data from '../../data';
 import { useLocalStorage } from "../../Helpers/useLocalStorage";
 
 
@@ -75,11 +75,12 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   const [togglePreview, setTogglePreview] = useState(false);
   const [files, setFiles] = useLocalStorage('files', data);
+  const [arrayPos, setArrayPos] = useState(files.length - 1); 
   
-  
+   
 
   return (
-    <StateContext.Provider value={{ openNav, setOpenNav, showModal, setShowModal, togglePreview, setTogglePreview, files , setFiles }}>
+    <StateContext.Provider value={{ openNav, setOpenNav, showModal, setShowModal, togglePreview, setTogglePreview, files , setFiles, arrayPos, setArrayPos }}>
       <Wrapper>
 
         <MainWrapper isOpen={openNav}>
