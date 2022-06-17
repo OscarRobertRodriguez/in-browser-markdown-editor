@@ -1,7 +1,9 @@
 
+import { useContext } from "react";
 import styled from "styled-components";
 import { QUERIES } from "../../constants";
 import LayoutPanelToggleBar from "../LayoutPanelToggleBar";
+import { StateContext } from "../App/App";
 
 
 const Wrapper = styled.div`
@@ -34,10 +36,12 @@ const TextArea = styled.textarea`
 
 
 const LayoutPanel = ({disabled, noIcon, className, children}) => {
+  const { openNav, files, setFiles, arrayPos, setArrayPos } = useContext(StateContext);
+
   return (
     <Wrapper className={className}>
       <LayoutPanelToggleBar noIcon={noIcon}/>
-      <TextArea disabled={disabled}>
+      <TextArea disabled={disabled} value={files[arrayPos].content}>
            
       </TextArea>
     </Wrapper>
