@@ -40,9 +40,8 @@ const Logo = styled.img`
 `
 
 const ContentWrapper = styled.div`
-  overflow-y: auto;
-
-
+ height: 100%;
+overflow-y: auto;
 `
 
 const Title = styled.h6`

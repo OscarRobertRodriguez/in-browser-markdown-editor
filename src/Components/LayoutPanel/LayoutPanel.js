@@ -1,9 +1,12 @@
 
-import { useContext } from "react";
+import { useContext, Fragment } from "react";
 import styled from "styled-components";
 import { QUERIES } from "../../constants";
 import LayoutPanelToggleBar from "../LayoutPanelToggleBar";
 import { StateContext } from "../App/App";
+import turnTextToMarkDown from '../../Helpers/turnTextToMarkDown';
+import React from "react";
+const {renderToString} = require('react-dom/server');
 
 
 const Wrapper = styled.div`
@@ -22,6 +25,10 @@ const TextArea = styled.textarea`
   background: var(--white);
   display: block;
   margin: 0 auto;
+  color: inherit;
+  font-family: inherit;
+  white-space: pre-line; 
+
   
  @media ${QUERIES.tabletAndUp} {
     padding: 22px 16px;
@@ -32,17 +39,26 @@ const TextArea = styled.textarea`
 
 `;
 
-
-
-
 const LayoutPanel = ({disabled, noIcon, className, children}) => {
   const { openNav, files, setFiles, arrayPos, setArrayPos } = useContext(StateContext);
+
+ 
 
   return (
     <Wrapper className={className}>
       <LayoutPanelToggleBar noIcon={noIcon}/>
-      <TextArea disabled={disabled} value={files[arrayPos].content}>
-           
+      <TextArea  value={files[arrayPos].content}  disabled={disabled}  onChange={(e) => setFiles(prev => {
+          var newArray = [...prev];
+          console.log(prev, 'prev');
+          //  turnTextToMarkDown(prev[arrayPos].content); 
+          newArray[arrayPos].content = e.target.value; 
+          return newArray; 
+      })}>
+         {disabled ? files[arrayPos].markdown.map((item) => {
+           return (
+                  <React.Fragment>{item}</React.Fragment>
+           )
+         }) : files[arrayPos].content}
       </TextArea>
     </Wrapper>
 
@@ -50,3 +66,6 @@ const LayoutPanel = ({disabled, noIcon, className, children}) => {
 };
 
 export default LayoutPanel;
+
+
+

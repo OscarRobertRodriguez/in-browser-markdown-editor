@@ -116,8 +116,8 @@ const DocWrapper = styled.div`
 const Header = () => {
 
 
-  const { openNav, files, setFiles, arrayPos, setArrayPos } = useContext(StateContext);
-  var lastItem = [...files].pop(); 
+  const { files, setFiles, arrayPos } = useContext(StateContext);
+
 
   
 
@@ -135,7 +135,7 @@ const Header = () => {
             </DocWrapper>
             <IconDelete />
             <SaveButton width={40}>
-                <img src={SaveIcon} />
+                <img src={SaveIcon} alt='save' />
                 <p>save changes</p>
             </SaveButton>
         </Wrapper>

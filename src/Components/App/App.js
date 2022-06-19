@@ -9,6 +9,8 @@ import Divider from "../Divider";
 import { QUERIES } from "../../constants";
 import data from '../../data';
 import { useLocalStorage } from "../../Helpers/useLocalStorage";
+import turnTextToMarkDown from "../../Helpers/turnTextToMarkDown";
+import marked from 'marked';
 
 
 const Wrapper = styled.div`
@@ -49,15 +51,24 @@ const PanelWrapper = styled.div`
 
     .previewPanel {
     display: ${props => props.togglePreview ? "none" : "initial"};
+     color: var(--grey-2);
+     font-size: 14px;
+     line-height: 24px;
 
     @media ${QUERIES.tabletAndUp} {
       display: block;
+
     }
    }
 
 
-    .markdownPanel {
+    & .markdownPanel {
     display: ${props => props.togglePreview ? "initial" : "none"};
+    font-family: var(--robotoMono);
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: var(--bold);
+    color: var(--black-4);
      @media ${QUERIES.tabletAndUp} {
       display: ${props => props.togglePreview ? "none" : "initial"};
    }
@@ -76,8 +87,24 @@ function App() {
   const [togglePreview, setTogglePreview] = useState(false);
   const [files, setFiles] = useLocalStorage('files', data);
   const [arrayPos, setArrayPos] = useState(files.length - 1); 
-  
    
+
+    useEffect(() => {       
+          let newArr = files.map((item) =>  {
+            let copy = {...item}; 
+                copy.markdown = marked.parse(copy.content); 
+                console.log(copy, 'copy');
+              return copy;   
+          }); 
+
+           setFiles(newArr);   
+
+    }, []);
+     
+
+
+
+
 
   return (
     <StateContext.Provider value={{ openNav, setOpenNav, showModal, setShowModal, togglePreview, setTogglePreview, files , setFiles, arrayPos, setArrayPos }}>
@@ -87,11 +114,11 @@ function App() {
           <Header />
 
           <PanelWrapper togglePreview={togglePreview}>
-            <LayoutPanel className='markdownPanel' noIcon={true} />
+            <LayoutPanel className='markdownPanel' disabled={false} noIcon={true} />
             <Divider />
             <LayoutPanel className="previewPanel" disabled={true} noIcon={false}>
-               {files}
-              </LayoutPanel>
+
+            </LayoutPanel>
           </PanelWrapper>
 
           <GlobalStyles />
