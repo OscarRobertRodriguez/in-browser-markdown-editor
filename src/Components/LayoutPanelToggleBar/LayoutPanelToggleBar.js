@@ -18,6 +18,7 @@ const Wrapper = styled.div`
   padding: 0 16px;
   position: sticky;
   top: 56px;
+  z-index: 999;
 
 
   @media ${QUERIES.tabletAndUp} {

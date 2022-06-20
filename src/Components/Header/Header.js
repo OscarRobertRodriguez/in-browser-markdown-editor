@@ -24,6 +24,7 @@ const Wrapper = styled.header`
   padding-right: 8px;
   position: sticky;
   top: 0;
+  z-index: 999;
   
   
 

@@ -5,12 +5,14 @@ import SideMenu from "../SideMenu";
 import Header from "../Header";
 import Modal from "../Modal";
 import LayoutPanel from "../LayoutPanel";
+import PreviewPanel from "../PreviewPanel/PreviewPanel";
 import Divider from "../Divider";
 import { QUERIES } from "../../constants";
 import data from '../../data';
 import { useLocalStorage } from "../../Helpers/useLocalStorage";
+import MarkdownView from "react-showdown";
 import turnTextToMarkDown from "../../Helpers/turnTextToMarkDown";
-import marked from 'marked';
+
 
 
 const Wrapper = styled.div`
@@ -22,12 +24,10 @@ const Wrapper = styled.div`
 
 const MainWrapper = styled.div`
   width:100%;
- min-height: 100%;
   transition: transform 400ms ease;
   transform: ${props => props.isOpen ? `translateX(calc(250rem / 16))` : `translateX(0)`};
   display: grid;
   grid-template-rows: min-content 1fr ;
-  
 
   @media ${QUERIES.tabletAndUp} {
     grid-template-rows: min-content  min-content 1fr ;
@@ -40,6 +40,7 @@ const MainWrapper = styled.div`
 const PanelWrapper = styled.div`
     display: grid;
    grid-template-columns:   1fr;
+   isolation: isolate;
 
    width: 100%;
 
@@ -91,8 +92,16 @@ function App() {
 
     useEffect(() => {       
           let newArr = files.map((item) =>  {
+         
+          
             let copy = {...item}; 
-                copy.markdown = marked.parse(copy.content); 
+
+                copy.markdown = 
+                <MarkdownView
+                markdown={files.content}
+                options={{ tables: true, emoji: true }}
+              />;
+
                 console.log(copy, 'copy');
               return copy;   
           }); 
@@ -116,9 +125,7 @@ function App() {
           <PanelWrapper togglePreview={togglePreview}>
             <LayoutPanel className='markdownPanel' disabled={false} noIcon={true} />
             <Divider />
-            <LayoutPanel className="previewPanel" disabled={true} noIcon={false}>
-
-            </LayoutPanel>
+            <PreviewPanel className="previewPanel"  noIcon={false} />
           </PanelWrapper>
 
           <GlobalStyles />
