@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import IconMenu from "../IconMenu";
 import IconDocument from '../../assets/icon-document.svg';
 import IconDelete from "../IconDelete";
@@ -10,6 +10,8 @@ import {QUERIES} from "../../constants";
 import {Portal} from "@reach/portal";
 import Button from "../Button";
 import { useContext } from "react";
+import { StateContext } from "../App/App";
+
 
 const Wrapper = styled.header`
   background-color: var(--black-3);
@@ -22,6 +24,7 @@ const Wrapper = styled.header`
   padding-right: 8px;
   position: sticky;
   top: 0;
+  z-index: 999;
   
   
 
@@ -107,9 +110,17 @@ const DocWrapper = styled.div`
 
 
 
+
+
+
+
 const Header = () => {
 
 
+  const { files, setFiles, arrayPos } = useContext(StateContext);
+
+
+  
 
 
     return (
@@ -120,12 +131,12 @@ const Header = () => {
                 <img src={IconDocument} alt={'document'}/>
                 <div style={{display: "flex", flexDirection: 'column', width: '100%'}}>
                     <p>Document Name</p>
-                    <input type='text' placeholder={'welcome.md'}/>
+                    <input type='text'  value={files[arrayPos].name} onChange={ (e) => changeFileName(e, arrayPos, setFiles) } />
                 </div>
             </DocWrapper>
             <IconDelete />
             <SaveButton width={40}>
-                <img src={SaveIcon} />
+                <img src={SaveIcon} alt='save' />
                 <p>save changes</p>
             </SaveButton>
         </Wrapper>
@@ -133,3 +144,24 @@ const Header = () => {
 };
 
 export default Header;
+
+
+
+function changeFileName(e, position, setValue) {
+  setValue(prev => {
+    const newItems = [...prev];
+
+    newItems[position].name = e.target.value;
+    return newItems; 
+  })
+}
+
+
+function checkFileExtenstionExist(value) {
+  const regex = new RegExp('\.md$'); 
+    console.log( regex.test(value) ? value : `${value}.md` )
+    return regex.test(value) ? value : `${value}.md`; 
+
+   
+  
+}

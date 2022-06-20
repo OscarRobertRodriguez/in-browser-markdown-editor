@@ -20,6 +20,9 @@ html {
   --19px: 1.1875rem;
   --20px: 1.25rem;
   --21px: 1.3125rem;
+  --24px: 1.5rem;
+  --28px: 1.75rem;
+  --32px: 2rem;
   
   
   --black-1-opaque: rgba(21, 22, 25, .5);
@@ -41,19 +44,60 @@ html {
   --white: hsla(0, 0%, 100%, 1.00);
 
 
-  --h1-font-size: 32px;
-  --h2-font-size: 28px;
-  --h3-font-size: 24px;
-  --h4-font-size: 20px;
-  --h5-font-size: 16px;
-  --h6-font-size: 14px;
+  --h1-font-size: var(--32px);
+  --h2-font-size: var(--28px);
+  --h3-font-size: var(--24px);
+  --h4-font-size: var(--20px);
+  --h5-font-size: var(--16px);
+  --h6-font-size: var(--14px);
+
   --roboto: 'Roboto' , sans-serif; 
+  --robotoSlab: 'Roboto Slab', sans-serif;
+  --robotoMono: 'Roboto Mono', sans-serif;
 
 
   --bold: 500;
   --bolder: 700;
   --light: 300;
 }
+
+h1, h2, h3 , h4 , h5 , h6 {
+  font-weight: var(--bolder);
+  font-family: var(--robotoSlab);
+  color: var(--black-4);
+}
+
+h1 {
+  font-size: var(--h1-font-size);
+}
+
+h2 {
+  font-size: var(--h2-font-size);
+  font-weight: var(--light);
+  font-family: var(--robotoSlab);
+  color: var(--black-4);
+}
+
+h3 {
+  font-size: var(--h3-font-size);
+}
+
+h4 {
+  font-size: var(--h4-font-size);
+}
+
+h5 {
+  font-size: var(--h5-font-size);
+}
+
+h6 {
+  font-size: var(--h6-font-size);
+  color: var(--dark-orange);
+}
+
+
+
+
 
 #root {
   isolation: isolate;
@@ -63,7 +107,7 @@ html {
 html, body, #root {
   height: 100%;
   margin: 0;
-  font-family: 'Roboto Slab', sans-serif;
+  font-family: var(--robotoSlab);
   width:100%;
   overflow-x:hidden;
 
