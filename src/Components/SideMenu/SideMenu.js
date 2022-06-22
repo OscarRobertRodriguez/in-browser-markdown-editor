@@ -4,9 +4,11 @@ import LogoImg from '../../assets/logo.svg';
 import Button from "../Button";
 import { QUERIES } from "../../constants";
 import todayStringDateFormat from '../../Helpers/todayStringDateFormat';
+import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitcher';
 import { useContext } from "react";
 import { StateContext } from "../App/App";
 import { nanoid } from 'nanoid';
+
 
 const Wrapper = styled.div`
   height: 100%;
@@ -67,7 +69,7 @@ const FilesWrapper = styled.ul`
 
 const SideMenu = () => {
 
-  const { openNav, files, setFiles, setArrayPos } = useContext(StateContext);
+  const { openNav, files, setFiles, setArrayPos, setChanges, changes } = useContext(StateContext);
 
 
   function addNewFileToStorage(setValue) {
@@ -75,13 +77,13 @@ const SideMenu = () => {
        "id": nanoid(),
       "createdAt": todayStringDateFormat(),
       "name": "untitled-document.md",
-      "content": ""
+      "content": ` Created on ${todayStringDateFormat()}`
     }]);
 
-      setArrayPos(currentArrayPos =>  {
-
-        return  currentArrayPos + 1;
-      }) 
+      // setArrayPos(currentArrayPos =>  {
+      //     console.log(currentArrayPos, 'current array');
+      //   return  currentArrayPos + 1;
+      // }) 
   }
 
 
@@ -90,18 +92,19 @@ const SideMenu = () => {
       <Logo src={LogoImg} alt={'markdown'} />
       <ContentWrapper>
         <Title>my documents</Title>
-        <Button onClick={() => addNewFileToStorage(setFiles)}>
+        <Button onClick={() => addNewFileToStorage(setChanges)}>
           <p>+ New Document</p>
         </Button>
 
         <FilesWrapper>
-          {files.map((file, index) => {
-            return <FileInfo key={file.id} date={file.createdAt} name={file.name} onClick={() => setArrayPos(index)} />
+          {changes.map((changes, index) => {
+            console.log(index, 'index');
+            return <FileInfo key={changes.id} date={changes.createdAt} name={changes.name} onClick={() => setArrayPos(index)} />
           })}
 
         </FilesWrapper>
       </ContentWrapper>
-      <h6>Light switcher</h6>
+      <ThemeSwitcher />
     </Wrapper>
   )
 };

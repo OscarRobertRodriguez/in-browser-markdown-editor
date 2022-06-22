@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   height: 100vh;
   width: 100%;
 
-`; 
+`;
 
 const TextArea = styled.textarea`
   padding: 16px 20px;
@@ -43,22 +43,18 @@ const TextArea = styled.textarea`
 
 `;
 
-const LayoutPanel = ({disabled, noIcon, className, children}) => {
-  const { openNav, files, setFiles, arrayPos, setArrayPos } = useContext(StateContext);
-
- 
+const LayoutPanel = ({ noIcon, className }) => {
+  const { arrayPos, setChanges, changes } = useContext(StateContext);
 
   return (
     <Wrapper className={className}>
-      <LayoutPanelToggleBar noIcon={noIcon}/>
-      <TextArea  value={files[arrayPos].content} contentEditable={true}  disabled={disabled}  onChange={(e) => setFiles(prev => {
-          var newArray = [...prev];
-          console.log(prev, 'prev');
-          //  turnTextToMarkDown(prev[arrayPos].content); 
-          newArray[arrayPos].content = e.target.value; 
-          return newArray; 
+      <LayoutPanelToggleBar noIcon={noIcon} />
+      <TextArea value={changes[arrayPos].content} onChange={(e) => setChanges(prev => {
+        var newArray = [...prev];
+        newArray[arrayPos].content = e.target.value;
+        return newArray;
       })}>
-         {disabled ? 'hello' : files[arrayPos].content}
+        {changes[arrayPos].content}
       </TextArea>
     </Wrapper>
 

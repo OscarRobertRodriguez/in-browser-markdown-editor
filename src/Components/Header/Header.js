@@ -117,7 +117,7 @@ const DocWrapper = styled.div`
 const Header = () => {
 
 
-  const { files, setFiles, arrayPos } = useContext(StateContext);
+  const { files, setFiles, arrayPos, changes, setChanges, setShowModal } = useContext(StateContext);
 
 
   
@@ -131,11 +131,15 @@ const Header = () => {
                 <img src={IconDocument} alt={'document'}/>
                 <div style={{display: "flex", flexDirection: 'column', width: '100%'}}>
                     <p>Document Name</p>
-                    <input type='text'  value={files[arrayPos].name} onChange={ (e) => changeFileName(e, arrayPos, setFiles) } />
+                    <input type='text'  value={changes[arrayPos].name} onChange={ (e) => changeFileName(e, arrayPos, setChanges) } />
                 </div>
             </DocWrapper>
-            <IconDelete />
-            <SaveButton width={40}>
+            <IconDelete  onClick={() => setShowModal(true)}/>
+            <SaveButton width={40} onClick={(e) => setFiles(prev => {
+              let copy = [...prev];
+              var newcopy = mergeArrayOfObjects(copy, changes, 'id'); 
+              return newcopy; 
+            })}>
                 <img src={SaveIcon} alt='save' />
                 <p>save changes</p>
             </SaveButton>
@@ -144,6 +148,9 @@ const Header = () => {
 };
 
 export default Header;
+
+
+
 
 
 
@@ -160,8 +167,15 @@ function changeFileName(e, position, setValue) {
 function checkFileExtenstionExist(value) {
   const regex = new RegExp('\.md$'); 
     console.log( regex.test(value) ? value : `${value}.md` )
-    return regex.test(value) ? value : `${value}.md`; 
-
-   
-  
+    return regex.test(value) ? value : `${value}.md`;   
 }
+
+function mergeArrayOfObjects(original, newdata, selector = 'key') {
+	newdata.forEach(dat => {
+		const foundIndex = original.findIndex(ori => ori[selector] == dat[selector]);
+		if (foundIndex >= 0) original.splice(foundIndex, 1, dat);
+        else original.push(dat);
+	});
+
+	return original;
+};

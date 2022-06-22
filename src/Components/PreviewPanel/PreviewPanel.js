@@ -101,16 +101,14 @@ li::before {
 
 
 const PreviewPanel = ({ noIcon, className, children }) => {
-  const { openNav, files, setFiles, arrayPos, setArrayPos } = useContext(StateContext);
+  const { openNav, files, setFiles, arrayPos, setArrayPos, changes } = useContext(StateContext);
 
 
 
   var converter = new showdown.Converter();
   converter.setOption('noHeaderId', 'true');
-  console.log(converter.getOptions());
-  var text = files[arrayPos].content;
+  var text = changes[arrayPos].content;
   var html = converter.makeHtml(text);
-  console.log(html);
   return (
     <Wrapper className={className}>
       <LayoutPanelToggleBar noIcon={noIcon} />

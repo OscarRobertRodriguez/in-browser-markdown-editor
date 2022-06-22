@@ -6,7 +6,7 @@ const data = [
     "id": nanoid(),
     "createdAt": todayStringDateFormat(),
     "name": "untitled-document.md",
-    "content": ""
+    "content":  ` Created on ${todayStringDateFormat()}`
   },
   {
     "id": nanoid(),

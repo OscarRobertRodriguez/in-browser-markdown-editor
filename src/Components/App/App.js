@@ -1,5 +1,5 @@
 import { useState, createContext, useEffect } from "react";
-import styled from 'styled-components';
+import styled, {ThemeProvider} from 'styled-components';
 import GlobalStyles from "../../GlobalStyles";
 import SideMenu from "../SideMenu";
 import Header from "../Header";
@@ -11,7 +11,7 @@ import { QUERIES } from "../../constants";
 import data from '../../data';
 import { useLocalStorage } from "../../Helpers/useLocalStorage";
 import MarkdownView from "react-showdown";
-import turnTextToMarkDown from "../../Helpers/turnTextToMarkDown";
+
 
 
 
@@ -64,7 +64,8 @@ const PanelWrapper = styled.div`
 
 
     & .markdownPanel {
-    display: ${props => props.togglePreview ? "initial" : "none"};
+    display: ${props => (   
+      props.togglePreview ? "initial" : "none")};
     font-family: var(--robotoMono);
     font-size: 14px;
     line-height: 24px;
@@ -87,36 +88,35 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   const [togglePreview, setTogglePreview] = useState(false);
   const [files, setFiles] = useLocalStorage('files', data);
-  const [arrayPos, setArrayPos] = useState(files.length - 1); 
-   
+  const [changes, setChanges] = useState(files || data);
+  const [arrayPos, setArrayPos] = useState(files.length - 1);
 
-    useEffect(() => {       
-          let newArr = files.map((item) =>  {
-         
-          
-            let copy = {...item}; 
+  useEffect(() => {
+    let newArr = files.map((item) => {
 
-                copy.markdown = 
-                <MarkdownView
-                markdown={files.content}
-                options={{ tables: true, emoji: true }}
-              />;
 
-                console.log(copy, 'copy');
-              return copy;   
-          }); 
+      let copy = { ...item };
 
-           setFiles(newArr);   
+      copy.markdown =
+        <MarkdownView
+          markdown={files.content}
+          options={{ tables: true, emoji: true }}
+        />;
 
-    }, []);
-     
+      return copy;
+    });
+
+    setFiles(newArr);
+
+  }, []);
+
 
 
 
 
 
   return (
-    <StateContext.Provider value={{ openNav, setOpenNav, showModal, setShowModal, togglePreview, setTogglePreview, files , setFiles, arrayPos, setArrayPos }}>
+    <StateContext.Provider value={{ openNav, setOpenNav, showModal, setShowModal, togglePreview, setTogglePreview, files, setFiles, arrayPos, setArrayPos, setChanges, changes }}>
       <Wrapper>
 
         <MainWrapper isOpen={openNav}>
@@ -125,7 +125,7 @@ function App() {
           <PanelWrapper togglePreview={togglePreview}>
             <LayoutPanel className='markdownPanel' disabled={false} noIcon={true} />
             <Divider />
-            <PreviewPanel className="previewPanel"  noIcon={false} />
+            <PreviewPanel className="previewPanel" noIcon={false} />
           </PanelWrapper>
 
           <GlobalStyles />
