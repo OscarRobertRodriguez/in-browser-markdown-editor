@@ -1,5 +1,6 @@
 import { useState, createContext, useEffect } from "react";
 import styled, {ThemeProvider} from 'styled-components';
+import {lightTheme, darkTheme} from "../../Theme";
 import GlobalStyles from "../../GlobalStyles";
 import SideMenu from "../SideMenu";
 import Header from "../Header";
@@ -11,6 +12,8 @@ import { QUERIES } from "../../constants";
 import data from '../../data';
 import { useLocalStorage } from "../../Helpers/useLocalStorage";
 import MarkdownView from "react-showdown";
+import useDarkTheme from "../../Helpers/useDarkTheme";
+
 
 
 
@@ -20,6 +23,7 @@ const Wrapper = styled.div`
   height: 100%;
   grid-template-columns:  1fr;
   isolation: isolate;
+
 `;
 
 const MainWrapper = styled.div`
@@ -70,7 +74,8 @@ const PanelWrapper = styled.div`
     font-size: 14px;
     line-height: 24px;
     font-weight: var(--bold);
-    color: var(--black-4);
+    color: ${({ theme }) => theme.color};
+    transition: .5s;
      @media ${QUERIES.tabletAndUp} {
       display: ${props => props.togglePreview ? "none" : "initial"};
    }
@@ -90,6 +95,10 @@ function App() {
   const [files, setFiles] = useLocalStorage('files', data);
   const [changes, setChanges] = useState(files || data);
   const [arrayPos, setArrayPos] = useState(files.length - 1);
+  const [theme, themeToggler] = useDarkTheme();
+  const selectedTheme = theme === 'light' ? lightTheme : darkTheme;
+
+  
 
   useEffect(() => {
     let newArr = files.map((item) => {
@@ -116,7 +125,9 @@ function App() {
 
 
   return (
+
     <StateContext.Provider value={{ openNav, setOpenNav, showModal, setShowModal, togglePreview, setTogglePreview, files, setFiles, arrayPos, setArrayPos, setChanges, changes }}>
+      <ThemeProvider theme={selectedTheme}>
       <Wrapper>
 
         <MainWrapper isOpen={openNav}>
@@ -130,9 +141,10 @@ function App() {
 
           <GlobalStyles />
         </MainWrapper>
-        <SideMenu />
+        <SideMenu themeToggler={themeToggler} />
         <Modal />
       </Wrapper>
+      </ThemeProvider>
     </StateContext.Provider>
   );
 }

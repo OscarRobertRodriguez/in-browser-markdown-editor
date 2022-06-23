@@ -29,6 +29,7 @@ const TextArea = styled.div`
   font-family: inherit;
   white-space: pre-line;
   overflow-y: scroll;
+  background: transparent;
 
 
 ol {
@@ -69,11 +70,12 @@ li::before {
   }
 
   blockquote, pre {
-    background: var(--grey-5);
+    background: ${({ theme }) => theme.markdownBlock};
+    transition: .5s;
     border-left: 4px solid  var(--dark-orange);
     border-radius: 4px;
     padding: 0px 32px 0 24px;
-    color: var(--black-4);
+    color: ${({ theme }) => theme.markdown};
     font-weight: var(--bolder);
 
     & a {
@@ -86,7 +88,8 @@ li::before {
     padding: 24px;
      font-weight: 400;
     code {
-    color: var(--black-4);
+      color: ${({ theme }) => theme.markdown};
+      transition: .5s;
     }
   
 

@@ -26,6 +26,7 @@ html {
   
   
   --black-1-opaque: rgba(21, 22, 25, .5);
+  --black-2-opaque: rgba(30, 30, 30, .5);
 
 
   --black-1: hsla(225, 9%, 9%, 1.00);
@@ -64,8 +65,11 @@ html {
 h1, h2, h3 , h4 , h5 , h6 {
   font-weight: var(--bolder);
   font-family: var(--robotoSlab);
-  color: var(--black-4);
+  color: ${({ theme }) => theme.markdown};
+  transition: .5s;
 }
+
+
 
 h1 {
   font-size: var(--h1-font-size);
@@ -75,7 +79,7 @@ h2 {
   font-size: var(--h2-font-size);
   font-weight: var(--light);
   font-family: var(--robotoSlab);
-  color: var(--black-4);
+
 }
 
 h3 {
@@ -117,6 +121,8 @@ html, body, #root {
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  background: ${({ theme }) => theme.background}; 
+  transition: .5s;
 }
 
 img, picture, video, canvas, svg {

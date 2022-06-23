@@ -67,7 +67,7 @@ const FilesWrapper = styled.ul`
 
 
 
-const SideMenu = () => {
+const SideMenu = ({themeToggler}) => {
 
   const { openNav, files, setFiles, setArrayPos, setChanges, changes } = useContext(StateContext);
 
@@ -104,7 +104,7 @@ const SideMenu = () => {
 
         </FilesWrapper>
       </ContentWrapper>
-      <ThemeSwitcher />
+      <ThemeSwitcher themeToggler={themeToggler} />
     </Wrapper>
   )
 };

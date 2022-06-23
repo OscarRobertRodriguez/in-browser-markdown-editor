@@ -31,6 +31,7 @@ const TextArea = styled.textarea`
   font-family: inherit;
   white-space: pre-line; 
   width: 100%;
+  background: transparent;
 
   
  @media ${QUERIES.tabletAndUp} {

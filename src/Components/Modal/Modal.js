@@ -15,7 +15,7 @@ const ModalWrapper = styled.div`
   width: 100%;
   height: 100%;
   border: none;
-  background-color: var(--black-1-opaque);
+  background-color: ${({ theme }) => theme.modalBackground};
   display: grid;
   place-content: center;
 
@@ -23,7 +23,7 @@ const ModalWrapper = styled.div`
 
 const ModalContent = styled.div`
   width: 343px;
-  background: var(--white);
+  background: ${({ theme }) => theme.background};
   border-radius: 4px;
   padding: 24px;
   font-family: 'Roboto Slab', sans-serif;
@@ -33,6 +33,7 @@ const ModalContent = styled.div`
     font-size: var(--20px);
     padding: 0;
     margin: 0;
+    color: ${({ theme }) => theme.markdown};
   }
   
   & > p {

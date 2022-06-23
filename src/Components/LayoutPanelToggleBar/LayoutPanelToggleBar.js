@@ -9,7 +9,7 @@ import { StateContext } from "../App/App";
 
 const Wrapper = styled.div`
   width: 100%;
-  background-color: var(--grey-5);
+  background-color: ${({ theme }) => theme.toggleBar};
   height: 42px;
   display: grid;
   grid-template-columns: 1fr;
@@ -19,6 +19,7 @@ const Wrapper = styled.div`
   position: sticky;
   top: 56px;
   z-index: 999;
+  transition: .5s;
 
 
   @media ${QUERIES.tabletAndUp} {
