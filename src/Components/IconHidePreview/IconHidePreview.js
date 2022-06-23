@@ -1,7 +1,5 @@
-import { useContext } from "react";
+
 import styled from "styled-components";
-import { QUERIES } from "../../constants";
-import { StateContext } from "../App/App";
 
 
 const Icon = styled.svg`
@@ -19,7 +17,7 @@ const Icon = styled.svg`
 
 const IconHidePreview = ({ onClick, className = 'hideIcon' }) => {
 
-    const { setTogglePreview } = useContext(StateContext);
+  
 
     return (
         <>

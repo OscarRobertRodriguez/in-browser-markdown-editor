@@ -13,6 +13,7 @@ import data from '../../data';
 import { useLocalStorage } from "../../Helpers/useLocalStorage";
 import MarkdownView from "react-showdown";
 import useDarkTheme from "../../Helpers/useDarkTheme";
+import { useRef } from "react";
 
 
 
@@ -97,15 +98,15 @@ function App() {
   const [arrayPos, setArrayPos] = useState(files.length - 1);
   const [theme, themeToggler] = useDarkTheme();
   const selectedTheme = theme === 'light' ? lightTheme : darkTheme;
+  const runOnce = useRef(false); 
 
   
 
   useEffect(() => {
+
+ if(!runOnce.current) {
     let newArr = files.map((item) => {
-
-
-      let copy = { ...item };
-
+    let copy = { ...item };
       copy.markdown =
         <MarkdownView
           markdown={files.content}
@@ -116,8 +117,10 @@ function App() {
     });
 
     setFiles(newArr);
+    runOnce.current = true;
+  }
 
-  }, []);
+  },[setFiles, files]);
 
 
 

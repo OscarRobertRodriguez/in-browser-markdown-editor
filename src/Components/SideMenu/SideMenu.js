@@ -69,7 +69,7 @@ const FilesWrapper = styled.ul`
 
 const SideMenu = ({themeToggler}) => {
 
-  const { openNav, files, setFiles, setArrayPos, setChanges, changes } = useContext(StateContext);
+  const { openNav, setArrayPos, setChanges, changes } = useContext(StateContext);
 
 
   function addNewFileToStorage(setValue) {
@@ -79,11 +79,6 @@ const SideMenu = ({themeToggler}) => {
       "name": "untitled-document.md",
       "content": ` Created on ${todayStringDateFormat()}`
     }]);
-
-      // setArrayPos(currentArrayPos =>  {
-      //     console.log(currentArrayPos, 'current array');
-      //   return  currentArrayPos + 1;
-      // }) 
   }
 
 

@@ -1,11 +1,10 @@
 
-import { useContext, Fragment } from "react";
+import { useContext} from "react";
 import styled from "styled-components";
 import { QUERIES } from "../../constants";
 import LayoutPanelToggleBar from "../LayoutPanelToggleBar";
 import { StateContext } from "../App/App";
 import React from "react";
-import MarkdownView, { Markdown } from "react-showdown";
 import showdown from "showdown";
 
 
@@ -104,7 +103,7 @@ li::before {
 
 
 const PreviewPanel = ({ noIcon, className, children }) => {
-  const { openNav, files, setFiles, arrayPos, setArrayPos, changes } = useContext(StateContext);
+  const { arrayPos, changes } = useContext(StateContext);
 
 
 

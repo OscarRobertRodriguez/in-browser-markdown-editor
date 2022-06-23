@@ -1,10 +1,8 @@
 import styled from "styled-components";
 import { QUERIES } from "../../constants";
-import IconShow from '../../assets/icon-show-preview.svg';
-import IconHide from '../../assets/icon-hide-preview.svg';
 import IconShowPreview from "../IconShowPreview/IconShowPreview";
 import IconHidePreview from "../IconHidePreview/IconHidePreview";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { StateContext } from "../App/App";
 
 const Wrapper = styled.div`
@@ -59,17 +57,7 @@ const Title = styled.h6`
 
     
 
-`
-
-const Icon = styled.img`
-  justify-self: end;
-  cursor: pointer;
-
-  &:hover {
-    color: red;
-  }
-`;
-
+`; 
 
 
 

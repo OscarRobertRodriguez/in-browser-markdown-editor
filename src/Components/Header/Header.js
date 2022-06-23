@@ -1,14 +1,11 @@
 import styled from "styled-components";
-import {useState, useEffect} from "react";
 import IconMenu from "../IconMenu";
 import IconDocument from '../../assets/icon-document.svg';
 import IconDelete from "../IconDelete";
 import LogoImg from '../../assets/logo.svg';
 import SaveIcon from '../../assets/icon-save.svg';
-import {SaveButton} from "../Button";
-import {QUERIES} from "../../constants";
-import {Portal} from "@reach/portal";
-import Button from "../Button";
+import { SaveButton } from "../Button";
+import { QUERIES } from "../../constants";
 import { useContext } from "react";
 import { StateContext } from "../App/App";
 
@@ -117,34 +114,34 @@ const DocWrapper = styled.div`
 const Header = () => {
 
 
-  const { files, setFiles, arrayPos, changes, setChanges, setShowModal } = useContext(StateContext);
+  const { setFiles, arrayPos, changes, setChanges, setShowModal } = useContext(StateContext);
 
 
-  
 
 
-    return (
-        <Wrapper>
-            <IconMenu />
-            <Logo src={LogoImg} />
-            <DocWrapper>
-                <img src={IconDocument} alt={'document'}/>
-                <div style={{display: "flex", flexDirection: 'column', width: '100%'}}>
-                    <p>Document Name</p>
-                    <input type='text'  value={changes[arrayPos].name} onChange={ (e) => changeFileName(e, arrayPos, setChanges) } />
-                </div>
-            </DocWrapper>
-            <IconDelete  onClick={() => setShowModal(true)}/>
-            <SaveButton width={40} onClick={(e) => setFiles(prev => {
-              let copy = [...prev];
-              var newcopy = mergeArrayOfObjects(copy, changes, 'id'); 
-              return newcopy; 
-            })}>
-                <img src={SaveIcon} alt='save' />
-                <p>save changes</p>
-            </SaveButton>
-        </Wrapper>
-    )
+
+  return (
+    <Wrapper>
+      <IconMenu />
+      <Logo src={LogoImg} />
+      <DocWrapper>
+        <img src={IconDocument} alt={'document'} />
+        <div style={{ display: "flex", flexDirection: 'column', width: '100%' }}>
+          <p>Document Name</p>
+          <input type='text' value={changes[arrayPos].name} onChange={(e) => changeFileName(e, arrayPos, setChanges)} />
+        </div>
+      </DocWrapper>
+      <IconDelete onClick={() => setShowModal(true)} />
+      <SaveButton width={40} onClick={(e) => setFiles(prev => {
+        let copy = [...prev];
+        var newcopy = mergeArrayOfObjects(copy, changes, 'id');
+        return newcopy;
+      })}>
+        <img src={SaveIcon} alt='save' />
+        <p>save changes</p>
+      </SaveButton>
+    </Wrapper>
+  )
 };
 
 export default Header;
@@ -159,23 +156,19 @@ function changeFileName(e, position, setValue) {
     const newItems = [...prev];
 
     newItems[position].name = e.target.value;
-    return newItems; 
+    return newItems;
   })
 }
 
 
-function checkFileExtenstionExist(value) {
-  const regex = new RegExp('\.md$'); 
-    console.log( regex.test(value) ? value : `${value}.md` )
-    return regex.test(value) ? value : `${value}.md`;   
-}
+
 
 function mergeArrayOfObjects(original, newdata, selector = 'key') {
-	newdata.forEach(dat => {
-		const foundIndex = original.findIndex(ori => ori[selector] == dat[selector]);
-		if (foundIndex >= 0) original.splice(foundIndex, 1, dat);
-        else original.push(dat);
-	});
+  newdata.forEach(dat => {
+    const foundIndex = original.findIndex(ori => ori[selector] === dat[selector]);
+    if (foundIndex >= 0) original.splice(foundIndex, 1, dat);
+    else original.push(dat);
+  });
 
-	return original;
+  return original;
 };

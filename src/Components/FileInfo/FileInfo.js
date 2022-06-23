@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { QUERIES } from "../../constants";
 import IconDocument from '../../assets/icon-document.svg';
 
 
@@ -81,12 +80,12 @@ const getMonth = (date) => {
 
 
 const ModifyDate = (date) => {
-    //    const d =  new window.Date(date); 
+
     const copyDate = date.split("-");
     const month = getMonth(date);
     const year = copyDate[2]
     const day = copyDate[1];
-    //    const year = d.getFullYear();
+
 
     return `${day} ${month} ${year}`;
 }

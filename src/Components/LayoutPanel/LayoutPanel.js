@@ -1,11 +1,9 @@
 
-import { useContext, Fragment } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
 import { QUERIES } from "../../constants";
-
 import LayoutPanelToggleBar from "../LayoutPanelToggleBar";
 import { StateContext } from "../App/App";
-import turnTextToMarkDown from '../../Helpers/turnTextToMarkDown';
 import React from "react";
 
 

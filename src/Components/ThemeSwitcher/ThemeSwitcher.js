@@ -1,8 +1,5 @@
-import LightIcon from '../../assets/icon-light-mode.svg';
-import DarkIcon from '../../assets/icon-dark-mode.svg';
+
 import styled from 'styled-components';
-import { QUERIES } from '../../constants';
-import useDarkTheme from "../../Helpers/useDarkTheme";
 
 
 

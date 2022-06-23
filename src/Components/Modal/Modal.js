@@ -55,7 +55,7 @@ function targetBackgroundOnly(e, func) {
 
 const Modal = () => {
 
-    const { showModal, setShowModal, arrayPos, setArrayPos, changes, setFiles, setChanges } = useContext(StateContext);
+    const { showModal, setShowModal, arrayPos, setArrayPos, setFiles, setChanges } = useContext(StateContext);
 
     if (!showModal) return null;
     const hideModal = () => setShowModal(false);

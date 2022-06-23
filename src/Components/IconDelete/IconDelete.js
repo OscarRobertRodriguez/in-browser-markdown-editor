@@ -1,7 +1,5 @@
-import { useContext } from "react";
+
 import styled from "styled-components";
-import Delete from '../../assets/icon-delete.svg';
-import { StateContext } from "../App/App";
 
 
 const Icon = styled.svg`
@@ -20,7 +18,7 @@ const Icon = styled.svg`
 
 const IconDelete = (props) => {
  
-  const {setShowModal, arrayPos} = useContext(StateContext); 
+
 
     return (
         <>
