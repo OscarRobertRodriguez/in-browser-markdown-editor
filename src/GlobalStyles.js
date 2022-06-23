@@ -67,7 +67,17 @@ h1, h2, h3 , h4 , h5 , h6 {
   font-family: var(--robotoSlab);
   color: ${({ theme }) => theme.markdown};
   transition: .5s;
+  line-height: 35px;
 }
+
+
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+    word-break: break-word;
+
+    
+}
+
 
 
 
