@@ -4,6 +4,7 @@ import IconDocument from '../../assets/icon-document.svg';
 
 
 
+
 const Wrapper = styled.li`
   display: flex;
   color: hsla(0, 0%, 100%, 1.00);
@@ -54,12 +55,11 @@ const DocName = styled.p`
 
 
 const FileInfo = ( props) => {
-
     return (
         <Wrapper {...props}>
             <img src={IconDocument} alt={'document'} />
             <InfoWrapper>
-                <Date>{ModifyDate(props.date)}</Date>
+                <Date>{props.date}</Date>
                 <DocName>{props.name}</DocName>
             </InfoWrapper>
         </Wrapper>
@@ -70,22 +70,3 @@ export default FileInfo;
 
 
 
-
-
-const getMonth = (date) => {
-    const options = { month: 'long' };
-    const d = new window.Date(date);
-    return new Intl.DateTimeFormat('en-US', options).format(d);
-}
-
-
-const ModifyDate = (date) => {
-
-    const copyDate = date.split("-");
-    const month = getMonth(date);
-    const year = copyDate[2]
-    const day = copyDate[1];
-
-
-    return `${day} ${month} ${year}`;
-}
