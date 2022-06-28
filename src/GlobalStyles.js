@@ -123,7 +123,7 @@ html, body, #root {
   margin: 0;
   font-family: var(--robotoSlab);
   width:100%;
-  overflow-x:hidden;
+  /* overflow-x:hidden; */
 
 }
 
