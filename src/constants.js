@@ -1,7 +1,7 @@
 const BREAKPOINTS = {
   tabletMin: 760,
   laptopMin: 1100,
-  desktopMin: 1500,
+  desktopMin: 1440,
 }
 export const QUERIES = {
   'tabletAndUp': `(min-width: ${BREAKPOINTS.tabletMin / 16}rem)`,
