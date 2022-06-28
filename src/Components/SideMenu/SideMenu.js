@@ -93,7 +93,6 @@ const SideMenu = ({themeToggler}) => {
 
         <FilesWrapper>
           {changes.map((changes, index) => {
-            console.log(index, 'index');
             return <FileInfo key={changes.id} date={changes.createdAt} name={changes.name} onClick={() => setArrayPos(index)} />
           })}
 

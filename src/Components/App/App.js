@@ -120,7 +120,6 @@ function App() {
     runOnce.current = true;
   }
 
-  console.log(files, 'files')
 
   },[setFiles, files]);
 
